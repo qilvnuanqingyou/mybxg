@@ -9,50 +9,55 @@
     <link rel="stylesheet" href="/public/less/index.css">
 </head>
 <body>
-    <!-- 登录 -->
-    <div class="login">
-        <div class="login-wrap">
-            <div class="avatar">
-                <img src="./uploads/monkey.png" class="img-circle" alt="">
-            </div>
-            <form action="" id="loginForm" class="col-xs-offset-1 col-xs-10">
-                <div class="input-group input-group-lg">
+<!-- 登录 -->
+<div class="login">
+    <div class="login-wrap">
+        <div class="avatar">
+            <img src="/uploads/monkey.png" class="img-circle" alt="">
+        </div>
+        <form action="" id="loginForm" class="col-xs-offset-1 col-xs-10">
+            <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                         <i class="fa fa-user"></i>
                     </span>
-                    <input type="text" name="tc_name" class="form-control" placeholder="用户名">
-                </div>
-                <div class="input-group input-group-lg">
+                <input type="text" name="tc_name" class="form-control" placeholder="用户名">
+            </div>
+            <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                         <i class="fa fa-key"></i>
                     </span>
-                    <input type="password" name="tc_pass" class="form-control" placeholder="密码">
-                </div>
-                <button id="loginBtn" type="submit" class="btn btn-lg btn-primary btn-block">登 录</button>
-            </form>
-        </div>
+                <input type="password" name="tc_pass" class="form-control" placeholder="密码">
+            </div>
+            <button id="loginBtn" type="submit" class="btn btn-lg btn-primary btn-block">登 录</button>
+        </form>
     </div>
-    <script src="/public/assets/jquery/jquery.min.js"></script>
-    <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script>
-        $('#loginBtn').click(function () {
-            //console.log(123);
-            $.ajax({
-                type: 'post',
-                //url: 'http://api.studyid.com/login',
-                url: '/api/login',
-                data: $('#loginForm').serialize(),
-                dataType: 'json',
-                success: function (data) {
-                    //console.log(data);
-                    if(data.code==200) {
-                        location.href = '/main/index';
-                    }
+</div>
+<script src="/public/assets/jquery/jquery.min.js"></script>
+<script src="/public/assets/jquery-cookie/jquery.cookie.js"></script>
+<script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    $('#loginBtn').click(function () {
+        //console.log(123);
+        $.ajax({
+            type: 'post',
+            //url: 'http://api.studyid.com/login',
+            url: '/api/login',
+            data: $('#loginForm').serialize(),
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.code == 200) {
+                    //存储用户登录后的信息
+                    $.cookie('loginInfo', JSON.stringify(data.result), {path: '/'});
+                    location.href = '/main/index';
+                    //location.href = '/';
+                    //location.href = 'index';
                 }
-            });
-            //阻止刷新
-            return false;
+            }
         });
-    </script>
+        //阻止刷新
+        return false;
+    });
+</script>
 </body>
 </html>
