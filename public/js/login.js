@@ -10,7 +10,7 @@ define(['jquery','cookie'], function ($) {
             success: function (data) {
                 console.log(data);
                 if (data.code == 200) {
-                    //存储用户登录后的信息
+                    //瀛樺偍鐢ㄦ埛鐧诲綍鍚庣殑淇℃伅
                     $.cookie('loginInfo', JSON.stringify(data.result), {path: '/'});
                     location.href = '/main/index';
                     //location.href = '/';
@@ -18,7 +18,7 @@ define(['jquery','cookie'], function ($) {
                 }
             }
         });
-        //阻止刷新
+        //闃绘鍒锋柊
         return false;
     });
 });
