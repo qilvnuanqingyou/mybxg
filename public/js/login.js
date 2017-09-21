@@ -1,6 +1,6 @@
 define(['jquery','cookie'], function ($) {
     $('#loginBtn').click(function () {
-        //console.log(123);
+        console.log(123);
         $.ajax({
             type: 'post',
             //url: 'http://api.studyid.com/login',
@@ -10,7 +10,7 @@ define(['jquery','cookie'], function ($) {
             success: function (data) {
                 console.log(data);
                 if (data.code == 200) {
-                    //存储用户登录后的信息
+
                     $.cookie('loginInfo', JSON.stringify(data.result), {path: '/'});
                     location.href = '/main/index';
                     //location.href = '/';
@@ -18,7 +18,6 @@ define(['jquery','cookie'], function ($) {
                 }
             }
         });
-        //阻止刷新
         return false;
     });
 });
