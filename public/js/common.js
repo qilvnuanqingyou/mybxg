@@ -5,7 +5,7 @@ define(['jquery','template','cookie'], function ($,template) {
         $(this).next().slideToggle();
     });
 
-    //ʵ���˳�����
+    //退出功能
     $('#logoutBtn').click(function () {
         $.ajax({
             type: 'post',
@@ -19,12 +19,12 @@ define(['jquery','template','cookie'], function ($,template) {
             }
         });
     });
-//��֤�û��Ƿ��¼��
+//通过判断是否携带PHPSESSID值来判断是否登录过，以防直接地址输入index进入，如果本身就在登录页，则不需要跳转
     var flag = $.cookie('PHPSESSID');
     if (!flag && location.pathname != '/main/login') {
         location.href = '/main/login';
     }
-//���ͷ����Ϣ
+//将cookie中保存的头像信息渲染到侧边
     var loginInfo = $.cookie('loginInfo');
     loginInfo = loginInfo && JSON.parse(loginInfo);
     var tpl = '<div class="avatar img-circle"> <img src="{{tc_avatar}}"> </div> <h4>{{tc_name}}</h4>';

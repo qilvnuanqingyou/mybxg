@@ -8,9 +8,9 @@ define(['jquery','cookie'], function ($) {
             data: $('#loginForm').serialize(),
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                console.log(data.result);
                 if (data.code == 200) {
-
+                    //将获得的头像的信息存入cookie中，给侧边头像渲染使用
                     $.cookie('loginInfo', JSON.stringify(data.result), {path: '/'});
                     location.href = '/main/index';
                     //location.href = '/';

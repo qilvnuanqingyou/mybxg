@@ -44,7 +44,7 @@ define(['jquery', 'template'], function ($, template) {
 *录进去系统是有3个条件的，$where['tc_name']、$where['tc_pass']、$where['tc_status']，就是用户名、密码、状态码为0，才可以登录成功
 *测试方法：
 *先打开数据库，打开teacher数据表，然后在浏览器调试，F12，将第一个的data-tcId设置为1，然后来回点击按钮，切换状态码，
-*切换的同时观察表中的第一个数据的tc_status值
+*切换的同时观察表中的第一个数据的tc_status值,会看到切换的是admin的状态，当为1时，相当于是注销了admin
 *
 *
 * */
