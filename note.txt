@@ -1,3 +1,9 @@
 1.讲师查看功能
 data-toggle="modal" data-target="#teacherModal"这里不用bootstrap的点击弹框，加了为什么不行了，因为是动态生成的吗
 解：是可以的，因为没有引入bootstrap
+2.表单的提交方式
+login.html ————> button submit ,return false ,location.href
+讲师编辑和添加功能 ————> input button ,location.href
+3.表单提交的值
+select: 被选中的option的value值 ？
+input复选框：被check的选项的value值 ？

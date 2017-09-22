@@ -32,36 +32,34 @@
         </li>
     </ol>
     <div class="teacher-add">
-        <form action="" class="form-horizontal col-xs-offset-2">
+        <form action="" id="teacherForm" class="form-horizontal col-xs-offset-2">
             <div class="form-group">
+                <input type="hidden" name="tc_id" value="{{tc_id}}">
                 <label for="" class="col-xs-3 control-label">姓名</label>
-
                 <div class="col-xs-4">
-                    <input type="text" value="{{tc_name}}" class="form-control input-sm" placeholder="讲师名称">
+                    <input type="text" name="tc_name" value="{{tc_name}}" class="form-control input-sm" placeholder="讲师名称">
                 </div>
             </div>
             <!-- 如果是编辑，密码这一项是没有的-->
             {{if !tc_id}}
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">密码</label>
-
                 <div class="col-xs-4">
-                    <input type="password" class="form-control input-sm">
+                    <input type="password" name="tc_pass"  class="form-control input-sm">
                 </div>
             </div>
             {{/if}}
             <div class="form-group">
-                <label for="" class="col-xs-3 control-label">入职时间</label>
-
+                <label for=""  class="col-xs-3 control-label">入职时间</label>
                 <div class="col-xs-4">
-                    <input type="text" value="{{tc_join_date}}" class="form-control input-sm">
+                    <input type="text" name="tc_join_date" value="{{tc_join_date}}" class="form-control input-sm">
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">类型</label>
-
                 <div class="col-xs-2">
-                    <select name="" class="form-control input-sm">
+                    <!-- select表单提交，提交的是谁? 应该是value值-->
+                    <select name="tc_type" class="form-control input-sm">
                         <option value="1" {{if tc_type==1}}selected{{/if}}>讲师</option>
                         <option value="0" {{if tc_type==0}}selected{{/if}}>管理员</option>
                     </select>
@@ -69,19 +67,19 @@
             </div>
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">性别</label>
-
                 <div class="col-xs-4">
                     <label class="radio-inline">
-                        <input type="radio" name="tc_gender" {{if tc_gender==0}}checked{{/if}} > 男
+                        <input type="radio" value="0" name="tc_gender" {{if tc_gender==0}}checked{{/if}} > 男
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="tc_gender" {{if tc_gender==1}}checked{{/if}}> 女
+                        <input type="radio" value="1" name="tc_gender" {{if tc_gender==1}}checked{{/if}}> 女
                     </label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-xs-7">
-                    <a href="./advert_list.html" class="btn btn-success btn-sm pull-right"> 添 加 </a>
+                    <!--<a href="./advert_list.html" class="btn btn-success btn-sm pull-right"> 添 加 </a>-->
+                    <input id="teacherBtn" type="button" class="btn btn-success btn-sm pull-right" value="提交">
                 </div>
             </div>
         </form>
