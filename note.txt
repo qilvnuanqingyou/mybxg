@@ -9,3 +9,4 @@ select: 被选中的option的value值 ？
 input复选框：被check的选项的value值 ？
 4.表单的placeholder存在，提交表单，没有验证提示，也没有提交？
 5.如果默认记住了密码，那么在添加讲师界面会默认填充此admin和密码？？？
+6.datapicker显示在上面还是下面？由什么决定？
