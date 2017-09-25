@@ -28,10 +28,13 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
                     //console.log(b);
                     var obj = JSON.parse(b);
                     $('.preview img').attr('src',obj.result.path);
+                    cropImage();
+                    $('.preview img').attr('src',obj.result.path);
                 }
             });
             // 选中图片
             var img = $('.preview img');
+            var nowCrop = null;// 保证裁切实例的唯一性
             //图片裁切功能
             $('#cropBtn').click(function() {
                 var flag = $(this).attr('data-flag');
@@ -61,6 +64,9 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
                 img.Jcrop({
                     aspectRatio : 2
                 },function() {
+                    // 销毁当前实例
+                    nowCrop && nowCrop.destroy();
+                    nowCrop = this;
                     // 显示缩略图
                     this.initComponent('Thumbnailer',{width : 240,height : 120,mythumb:'.thumb'});
                     //console.log(this);
@@ -75,19 +81,21 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
                     // 创建一个选区
                     this.newSelection();
                     this.setSelect([x,y,w,h]);
+
+                    console.log(2);
+                    // 监控选区的变化
+                    img.parent().on('cropstart cropmove cropend',function(a,b,c){
+                        console.log(1);
+                        // 选区完成和变化的时候把对应的坐标数据填充到表单里
+                        console.log(c);
+                        var aInput = $('#cropForm').find('input');
+                        aInput.eq(0).val(c.x);
+                        aInput.eq(1).val(c.y);
+                        aInput.eq(2).val(c.w);
+                        aInput.eq(3).val(c.h);
+                    });
                 });
-                console.log(2);
-                // 监控选区的变化
-                img.parent().on('cropstart cropmove cropend',function(a,b,c){
-                    console.log(1);
-                    // 选区完成和变化的时候把对应的坐标数据填充到表单里
-                    console.log(c);
-                    var aInput = $('#cropForm').find('input');
-                    aInput.eq(0).val(c.x);
-                    aInput.eq(1).val(c.y);
-                    aInput.eq(2).val(c.w);
-                    aInput.eq(3).val(c.h);
-                });
+
             }
         }
     });
