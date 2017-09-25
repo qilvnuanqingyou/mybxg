@@ -29,7 +29,7 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
                     var obj = JSON.parse(b);
                     $('.preview img').attr('src',obj.result.path);
                     cropImage();
-                    $('.preview img').attr('src',obj.result.path);
+                    $('#cropBtn').text('保存图片').attr('data-flag',true);
                 }
             });
             // 选中图片
@@ -62,11 +62,13 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
             //封装一个独立的方法实现图片裁切
             function cropImage() {
                 img.Jcrop({
+                    boxWidth: 400,
                     aspectRatio : 2
                 },function() {
                     // 销毁当前实例
                     nowCrop && nowCrop.destroy();
                     nowCrop = this;
+                    $('.thumb').html('');
                     // 显示缩略图
                     this.initComponent('Thumbnailer',{width : 240,height : 120,mythumb:'.thumb'});
                     //console.log(this);
@@ -81,8 +83,6 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
                     // 创建一个选区
                     this.newSelection();
                     this.setSelect([x,y,w,h]);
-
-                    console.log(2);
                     // 监控选区的变化
                     img.parent().on('cropstart cropmove cropend',function(a,b,c){
                         console.log(1);
@@ -95,7 +95,7 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
                         aInput.eq(3).val(c.h);
                     });
                 });
-
+                //console.log(2);
             }
         }
     });
