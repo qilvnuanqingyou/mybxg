@@ -49,7 +49,7 @@ define(['jquery','template','util','validate','form'],function($,template,util){
                         dataType: 'json',
                         success: function(data) {
                             //console.log(data);
-                            location.href = '/course/picture?cs_id' + data.result.csId;
+                            location.href = '/course/picture?cs_id=' + data.result.cs_id;
                         }
                     });
                 }
