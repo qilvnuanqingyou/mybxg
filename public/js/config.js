@@ -13,6 +13,7 @@ require.config({
         region: 'jquery-region/jquery.region',
         ckeditor: 'ckeditor/ckeditor',
         jcrop: 'jcrop/js/Jcrop',
+        echarts : 'echarts/echarts.min',
         nprogress : 'nprogress/nprogress',
         util : '../js/util',
         common : '../js/common',
