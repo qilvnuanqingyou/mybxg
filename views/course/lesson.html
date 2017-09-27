@@ -108,7 +108,7 @@
         <h4 class="modal-title">{{operate}}</h4>
     </div>
     <div class="modal-body">
-        <form action="" class="form-horizontal">
+        <form id="lessonForm" class="form-horizontal">
             <div class="form-group">
                 <label for="" class="col-xs-2 control-label">标题</label>
                 <div class="col-xs-6">
@@ -117,7 +117,12 @@
                 <div class="col-xs-2">
                     <div class="checkbox">
                         <label>
-                            <input {{if ct_is_free==1}}checked{{/if}} type="checkbox"> 免费课时
+                            {{ if ct_is_free == 0 }}
+                            <input type="checkbox" class="is_free"> 免费课时
+                            {{ else }}
+                            <input type="checkbox" class="is_free" checked> 免费课时
+                            {{ /if }}
+                            <!--<input name="ct_is_free" value="{{ct_is_free}}" {{if ct_is_free==1}}checked{{/if}} type="checkbox"> 免费课时-->
                         </label>
                     </div>
                 </div>
@@ -151,7 +156,6 @@
             </div>
             <div class="form-group form-inline">
                 <label for="" class="col-xs-2 control-label">建议学习时长</label>
-
                 <div class="col-xs-8">
                     <input type="text" name="ct_recommend_duration" value="{{ct_recommend_duration}}" class="form-control input-sm small">
                     小时
@@ -162,7 +166,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-link btn-sm" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-success btn-sm"> 添 加</button>
+        <button type="button" id="addOreditBtn" class="btn btn-success btn-sm"> 添 加</button>
     </div>
 </script>
 <?php include('./views/common/script.html'); ?>
